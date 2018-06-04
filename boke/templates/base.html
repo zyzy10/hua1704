@@ -46,7 +46,7 @@
         <div class="col-md-8">{% block container %}{% endblock %}</div>
         <div class="col-md-4">
             <div class="well">
-                <form class="form-horizontal" action="/post/search/" method="POST">
+                <form class="form-horizontal" action="/search_boke/" method="POST">
                     {% csrf_token %}
                     <input type="text" class="form-control" placeholder="搜索" name="keyword">
                 </form>
