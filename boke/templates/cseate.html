@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    {% if tid %}
+        <form action="{% url 'update_boke' tid %}" method="post">
+            <br>
+            <br>
+            <div align="center">
+                <input type="text" name="title" value="{{ data_all.title }}" placeholder="请输入标题"><br>
+                <br>
+                <textarea name="content" id="" cols="30" rows="10">{{ data_all.content }}</textarea><br>
+                <input type="submit" value="提交"><br>
+            </div>
+        {% csrf_token %}
+        </form>
+        {% else %}
+        <form action="{% url 'list_boke' %}" method="post">
+            <br>
+            <br>
+            <div align="center">
+                <input type="text" name="title" placeholder="请输入标题"><br>
+                <br>
+                <textarea name="content" id="" cols="30" rows="10"></textarea><br>
+                <input type="submit" value="提交"><br>
+            </div>
+        {% csrf_token %}
+        </form>
+    {% endif %}
+</div>
+
+</body>
+</html>

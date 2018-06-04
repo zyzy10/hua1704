@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="">aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
+
+<div>
+    <ul>
+        {% for foo in page %}
+        <li>
+            <h3>{{ foo.title }} <a href="{% url 'update_boke' foo.id %}">修改</a> </h3>
+            <a href="{% url 'detail_boke' foo.id %}"><p>{{ foo.content }}</p></a>
+            <p>{{ foo.add_time }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+<div>
+    {% if page_number <= 1 %}
+    {% else %}
+        <a href="?page={{ page_number|add:-1 }}">上一页</a>
+    {% endif %}
+
+
+    {% for list in page_list %}
+        <a href="?page={{ list }}">{{ list }}</a>
+    {% endfor %}
+
+
+    {% if page_number >= page_all_num %}
+        {% else %}
+        <a href="?page={{ page_number|add:1 }}">下一页</a>
+    {% endif %}
+
+</div>
+
+
+</body>
+</html>
