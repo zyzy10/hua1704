@@ -1,12 +1,30 @@
-from django.http import HttpResponse
+from math import ceil
+
 from django.shortcuts import render,redirect
 from .models import Post
 
 
 def list_boke(request):
-    posts = Post.objects.all()
+    page = int(request.GET.get('page', 1))  # 当前页码，默认为 1
+
+    per_page = 2
+    # 计算总页数
+    total = Post.objects.count()
+    pages = ceil(total / per_page)
+
+    # 取出本页需要现实的文章
+    '''
+    start=0:0和2-1
+    start=2:2和4-1
+    start=4:4和6-1
+    '''
+    start = (page - 1) * per_page
+    print(start,'======')
+    end = start + per_page
+    posts = Post.objects.all()[start:end]
     context = {
-        'posts':posts,
+        'posts': posts,
+        'pages': range(pages),
     }
     return render(request,'post_list.html',context)
 
