@@ -14,4 +14,5 @@ urlpatterns = [
     # 搜索
     url(r'^search_boke/$', views.search_boke, name='search_boke'),
 
+
 ]
