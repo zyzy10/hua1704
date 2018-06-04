@@ -64,4 +64,8 @@ def create_boke(request):
 
 
 def search_boke(request):
-    return render(request,'search.html')
+    keyword = request.POST.get('keyword')
+    posts = Post.objects.filter(title__icontains=keyword)
+    context = {'posts':posts}
+    return render(request,'search.html',context)
+
