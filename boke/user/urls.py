@@ -9,5 +9,8 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     # 阅读
     url(r'^user_info/$', views.user_info, name='user_info'),
+    # 退出
+    url(r'^logout/',views.logout,name='logout'),
+
 
 ]

@@ -10,20 +10,32 @@
     {{ error }}
 </div>
 {% endif %}
+    {% for user in users %}
+    <ul>
+        <li>
+            {{ user.id }}<br>
+            {{ user.nlck }}<br>
+            {{ user.pssword }}<br>
+{#            {{ user.icon }}<br>#}
+{#            <img src="/static/medias/timg.jpeg" alt="">#}
+        </li>
+    </ul>
+    {% endfor %}
+
 
 <form class="form-horizontal" method="POST" action="/user/login/">
     {% csrf_token %}
     <div class="form-group">
         <label class="col-sm-2 control-label">昵称</label>
         <div class="col-sm-5">
-            <input class="form-control" type="text" name="nickname">
+            <input class="form-control" type="text" name="nick">
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-sm-2 control-label">密码</label>
         <div class="col-sm-5">
-            <input class="form-control" type="password" name="password">
+            <input class="form-control" type="password" name="pssword">
         </div>
     </div>
 
@@ -31,6 +43,9 @@
         <div class="col-sm-offset-2 col-sm-5">
             <button type="submit" class="btn btn-default">提交</button>
         </div>
+    </div>
+    <div>
+        第三方登录：<a href="{{weibo_login_api}}">微博登录</a>
     </div>
 </form>
 {% endblock %}
