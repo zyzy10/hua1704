@@ -6,7 +6,7 @@ class User(models.Model):
         ('F','女'),
         ('U','保密'),
     )
-    nlck = models.CharField(max_length=32,unique=True)
+    nlck = models.CharField(max_length=32)
     pssword = models.CharField(max_length=200)
     icon = models.ImageField()
     sex = models.CharField(max_length=32,choices=SEX)
