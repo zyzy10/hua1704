@@ -1,13 +1,16 @@
 
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import make_password,check_password
-
+from django.conf import settings
+from urllib.parse import urlencode
 from .forms import RegisterForm
 from .models import User
 from .helper import login_required
 
 
 def login(request):
+    querystring = urlencode(settings.AUTHORIZE_PARAMS)
+    weibo_login_api = '%s?%s' % (settings.AUTHORIZE_API, querystring)
     users = User.objects.all()
     if request.method == 'POST':
         print('====post===')
@@ -18,16 +21,17 @@ def login(request):
         try:
             user = User.objects.get(nlck=nlck)
         except User.DoesNotExist:
-            return render(request,'login.html',{'error':'用户名错误'})
+            return render(request,'login.html',{'error':'用户名错误','weibo_login_api': weibo_login_api})
         if check_password(pssword,user.pssword):
             request.session['user'] = user.nlck
             request.session['uid'] = user.id
             return redirect('user:user_info')
-        return render(request, 'login.html', {'error': '密码错误'})
+        return render(request, 'login.html', {'error': '密码错误','weibo_login_api': weibo_login_api})
 
     print('====get====')
     context = {
         'users':users,
+        'weibo_login_api': weibo_login_api,
     }
     return render(request,'login.html',context)
 
@@ -62,7 +66,3 @@ def logout(request):
     request.session.flush()
     return redirect('list_boke')
 
-
-# def aa(request):
-#     User.objects.filter(id=9).delete()
-#     return redirect('/user/login/')

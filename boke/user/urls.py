@@ -12,6 +12,5 @@ urlpatterns = [
     # 退出
     url(r'^logout/',views.logout,name='logout'),
 
-    # url(r'^aa/',views.aa,name='aa')
 
 ]
