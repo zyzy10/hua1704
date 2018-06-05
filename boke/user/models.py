@@ -11,3 +11,4 @@ class User(models.Model):
     icon = models.ImageField()
     sex = models.CharField(max_length=32,choices=SEX)
     age = models.IntegerField()
+
