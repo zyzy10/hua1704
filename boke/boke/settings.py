@@ -130,6 +130,33 @@ MEDIA_URL = '/medias/'
 MEDIA_ROOT=os.path.join(BASE_DIR,"static/medias")
 
 
+# session配置
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+
+# redis配置
+REDIS = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 1,
+}
+
+
+# redis缓存
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS":
+            "django_redis.client.DefaultClient",
+            "PICKLE_VERSION": -1,
+        }
+    }
+}
+
+
+
 # Wei Bo
 WEIBO_APP_KEY = '1310374555'
 WEIBO_APP_SECRET = 'e5cf3ddc50d77ba6f038013003c29550'
