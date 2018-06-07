@@ -21,9 +21,9 @@ def login_required(view_func):
 def page_cache(timeout):
     def wrap1(view_func):
         def wrap2(request):
-            key = 'PageCache-%s-%s'%(request.session.session_key,request.get_full_path())
+            key = 'PageCache-%s-%s'%(request.session.session_key, request.get_full_path())
             response = cache.get(key)
-            if key is None:
+            if response is None:
                 response = view_func(request)
                 cache.set(key,response,timeout)
             return response

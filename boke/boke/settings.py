@@ -131,7 +131,7 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"static/medias")
 
 
 # session配置
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
 
 # redis配置

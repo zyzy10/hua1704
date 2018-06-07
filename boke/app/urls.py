@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^create_boke/$', views.create_boke, name='create_boke'),
     # 搜索
     url(r'^search_boke/$', views.search_boke, name='search_boke'),
+    # 搜索
+    url(r'^top10/$', views.top10, name='top10'),
 
 
 ]
