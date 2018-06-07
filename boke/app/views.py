@@ -2,8 +2,12 @@ from math import ceil
 
 from django.shortcuts import render,redirect
 from .models import Post
+from user.helper import page_cache
+from user.helper import read_count
+from user.helper import get_top_n
 
 
+# @page_cache(3)
 def list_boke(request):
     page = int(request.GET.get('page', 1))  # 当前页码，默认为 1
 
@@ -44,7 +48,8 @@ def edit_boke(request):
     }
     return render(request,'edit.html',context)
 
-
+@read_count
+@page_cache(3)
 def read_boke(request):
     page_id = request.GET.get('post_id')
     posts = Post.objects.get(id=page_id)
@@ -68,4 +73,5 @@ def search_boke(request):
     posts = Post.objects.filter(title__icontains=keyword)
     context = {'posts':posts}
     return render(request,'search.html',context)
+
 
